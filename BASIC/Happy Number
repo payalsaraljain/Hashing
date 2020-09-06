@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isHappy(int n) {
+       int sum=n,c=0;
+        int n1;
+        while(sum!=1){
+            n1=sum;
+            sum=0;
+            while(n1!=0){
+                int q=n1%10;
+                if(q!=0){
+                    sum=sum+pow(q,2);
+                }
+                n1=n1/10;
+            }
+            c=c+1;
+            if(c>=20){
+                return false;
+            }
+        }
+        return true;
+    }
+};
