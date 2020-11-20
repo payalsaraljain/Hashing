@@ -1,0 +1,44 @@
+Input: A = "this apple is sweet", B = "this apple is sour"
+Output: ["sweet","sour"]
+
+class Solution {
+public:
+    vector<string> uncommonFromSentences(string A, string B) {
+        vector<string> v;
+        int n=A.length();
+        int n1=B.length();
+        unordered_map<string,int> m;
+        unordered_map<string,int> m1;
+        istringstream iss(A);
+        do{
+            string a1;
+            iss>>a1;
+            m[a1]++;
+        }
+        while(iss);
+        istringstream iss1(B);
+        do{
+            string a2;
+            iss1>>a2;
+            m1[a2]++;
+        }
+        while(iss1);
+        for(auto it=m.begin();it!=m.end();it++){
+            string f=it->first;
+            if(m1.find(f)==m1.end()){
+                if(m[it->first]==1){
+                    v.push_back(it->first);
+                }
+            }
+        }
+         for(auto it=m1.begin();it!=m1.end();it++){
+            string f=it->first;
+            if(m.find(f)==m.end()){
+                if(m1[it->first]==1){
+                    v.push_back(it->first);
+                }
+            }
+        }
+        return v;
+    }
+};
